@@ -286,18 +286,6 @@
 						"url": "https://www.anapioficeandfire.com/api/books/99999"
 					},
 					"response": []
-				},
-				{
-					"name": "Pagination - Greater than 50",
-					"id": "72c4d3e5-6fbf-45cb-8695-7a5f39aca660",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
 				}
 			],
 			"id": "086291a3-829b-45f2-bb46-85428d08493f"
@@ -306,7 +294,7 @@
 			"name": "Characters",
 			"item": [
 				{
-					"name": "Pagination",
+					"name": "Pagination - Greater than 50 per page",
 					"event": [
 						{
 							"listen": "test",
@@ -320,6 +308,9 @@
 									"    responseBody.forEach((character) => {\r",
 									"        pm.expect(character).to.be.an('object');\r",
 									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check if response body has correct number of characters\", function () {\r",
 									"    pm.expect(responseBody.length).to.eq(51);\r",
 									"});"
 								],
@@ -328,6 +319,64 @@
 						}
 					],
 					"id": "5b7379a3-28af-41c9-93d0-542080e91aec",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.anapioficeandfire.com/api/characters?page=2&pageSize=51",
+							"protocol": "https",
+							"host": [
+								"www",
+								"anapioficeandfire",
+								"com"
+							],
+							"path": [
+								"api",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "pageSize",
+									"value": "51"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination - Less than 50 per page",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3e52fcc6-9711-4c55-b95a-955ea2b30532",
+								"exec": [
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Check if response body is an array of objects\", function () {\r",
+									"    pm.expect(responseBody).to.be.an('array').that.is.not.empty;\r",
+									"    responseBody.forEach((character) => {\r",
+									"        pm.expect(character).to.be.an('object');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check if response body has correct number of characters\", function () {\r",
+									"    pm.expect(responseBody.length).to.eq(51);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "b199f291-1b48-4fc3-b637-be2f80c36f63",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
