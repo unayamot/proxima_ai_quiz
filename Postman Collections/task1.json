@@ -369,7 +369,7 @@
 									"});\r",
 									"\r",
 									"pm.test(\"Check if response body has correct number of characters\", function () {\r",
-									"    pm.expect(responseBody.length).to.eq(51);\r",
+									"    pm.expect(responseBody.length).to.eq(49);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -384,7 +384,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://www.anapioficeandfire.com/api/characters?page=2&pageSize=51",
+							"raw": "https://www.anapioficeandfire.com/api/characters?page=2&pageSize=49",
 							"protocol": "https",
 							"host": [
 								"www",
@@ -402,7 +402,7 @@
 								},
 								{
 									"key": "pageSize",
-									"value": "51"
+									"value": "49"
 								}
 							]
 						}
