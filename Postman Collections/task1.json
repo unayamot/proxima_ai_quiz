@@ -612,6 +612,33 @@
 						"url": "https://www.anapioficeandfire.com/api/houses/362"
 					},
 					"response": []
+				},
+				{
+					"name": "Non-existent house",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9eb1e5e0-8fb4-4014-839c-42dfe17fc64c",
+								"exec": [
+									"pm.test(\"Verify that status is 404 - not found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "324919e0-48fb-42b9-a8ac-561d0812df4c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://www.anapioficeandfire.com/api/books/99999"
+					},
+					"response": []
 				}
 			],
 			"id": "82a91c81-1dc9-4300-ab4d-daa7af8c7164",
