@@ -572,13 +572,44 @@
 			"item": [
 				{
 					"name": "House 362 - House Stark of Winterfell",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a017db8f-e9a9-4599-a438-ecde936853ca",
+								"exec": [
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Verify that status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the URL contains the correct house number\", function () {\r",
+									"    pm.expect(responseBody.url).to.contain(\"/houses/362\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the house name has the correct type and value\", function () {\r",
+									"    pm.expect(responseBody.name).to.be.a('string');\r",
+									"    pm.expect(responseBody.name).to.eq(\"House Stark of Winterfell\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the house name has the correct type and value\", function () {\r",
+									"    pm.expect(responseBody.name).to.be.a('string');\r",
+									"    pm.expect(responseBody.name).to.eq(\"House Stark of Winterfell\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "d5526321-dd79-47ab-8b01-ae33d6531a2f",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": "https://www.anapioficeandfire.com/api/houses/362"
 					},
 					"response": []
 				}
