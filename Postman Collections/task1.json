@@ -91,6 +91,30 @@
 						"url": "https://www.anapioficeandfire.com/api/books/1"
 					},
 					"response": []
+				},
+				{
+					"name": "Book 2 - A Clash of Kings",
+					"id": "da988151-1e43-4825-842e-5e757c57d6e4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Book 3 - A Storm of Swords",
+					"id": "747844ce-dccf-4078-869a-5c6e0189f251",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			],
 			"id": "086291a3-829b-45f2-bb46-85428d08493f"
