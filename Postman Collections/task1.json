@@ -288,7 +288,7 @@
 					"response": []
 				},
 				{
-					"name": "Pagination Copy",
+					"name": "Pagination - Greater than 50",
 					"id": "72c4d3e5-6fbf-45cb-8695-7a5f39aca660",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
