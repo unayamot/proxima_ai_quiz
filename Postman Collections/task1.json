@@ -178,13 +178,85 @@
 				},
 				{
 					"name": "Book 3 - A Storm of Swords",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b742df7c-e364-4794-a9bc-719b46cdc59c",
+								"exec": [
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Verify that status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the URL contains the correct book number\", function () {\r",
+									"    pm.expect(responseBody.url).to.contain(\"/books/3\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the book name has correct value and type\", function () {\r",
+									"    pm.expect(responseBody.name).to.be.a('string');\r",
+									"    pm.expect(responseBody.name).to.eq(\"A Storm of Swords\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the ISBN number has correct format, value and type\", function () {\r",
+									"    pm.expect(responseBody.isbn).to.match(/\\d{3}-\\d{10}/);\r",
+									"    pm.expect(responseBody.isbn).to.be.a('string');\r",
+									"    pm.expect(responseBody.isbn).to.eq(\"978-0553106633\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the author name has correct type and value\", function () {\r",
+									"    pm.expect(responseBody.authors[0]).to.be.a('string');\r",
+									"    pm.expect(responseBody.authors[0]).to.eq(\"George R. R. Martin\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the number of pages has the correct type and value\", function() {\r",
+									"    pm.expect(responseBody.numberOfPages).to.be.a('number');\r",
+									"    pm.expect(responseBody.numberOfPages).to.eq(992);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the publisher has the correct type and value\", function () {\r",
+									"     pm.expect(responseBody.publisher).to.be.a('string');\r",
+									"     pm.expect(responseBody.publisher).to.eq(\"Bantam Books\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the country has the correct type and value\", function () {\r",
+									"     pm.expect(responseBody.country).to.be.a('string');\r",
+									"     pm.expect(responseBody.country).to.eq(\"United States\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the media type has the correct type and value\", function () {\r",
+									"     pm.expect(responseBody.mediaType).to.be.a('string');\r",
+									"     pm.expect(responseBody.mediaType).to.eq(\"Hardcover\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the release has the correct type and value\", function () {\r",
+									"     pm.expect(responseBody.released).to.be.a('string');\r",
+									"     pm.expect(responseBody.released).to.eq(\"2000-10-31T00:00:00\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the characters has the correct count and contains character 2\", function () {\r",
+									"     pm.expect(responseBody.characters.length).to.eq(1021);\r",
+									"     pm.expect(responseBody.characters[0]).to.eq(\"https://www.anapioficeandfire.com/api/characters/2\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the povCharacters has the correct count and contains character 148\", function () {\r",
+									"     pm.expect(responseBody.povCharacters.length).to.eq(12);\r",
+									"     pm.expect(responseBody.povCharacters[0]).to.eq(\"https://www.anapioficeandfire.com/api/characters/148\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "747844ce-dccf-4078-869a-5c6e0189f251",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": "https://www.anapioficeandfire.com/api/books/3"
 					},
 					"response": []
 				}
