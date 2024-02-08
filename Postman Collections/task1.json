@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "55c59c9b-6975-473d-96b7-801479f627cb",
+		"name": "Proxima AI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "Book 1 - A Game of Thrones",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0cfd95df-304d-406f-b0d1-63e1cb6ea1d3",
+								"exec": [
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Verify that status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the URL contains the correct book number\", function () {\r",
+									"    pm.expect(responseBody.url).to.contain(\"/books/1\")\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the book name has correct value and type\", function () {\r",
+									"    pm.expect(responseBody.name).to.be.a.string;\r",
+									"    pm.expect(responseBody.name).to.eq(\"A Game of Thrones\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the ISBN number has correct format, value and type\", function () {\r",
+									"    pm.expect(responseBody.isbn).to.match(/\\d{3}-\\d{10}/);\r",
+									"    pm.expect(responseBody.isbn).to.be.a.string;\r",
+									"    pm.expect(responseBody.isbn).to.eq(\"978-0553103540\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the author name has correct value and type\", function () {\r",
+									"    pm.expect(responseBody.authors[0]).to.be.a.string;\r",
+									"    pm.expect(responseBody.authors[0]).to.eq(\"George R. R. Martin\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "5b8dd0c2-19f0-48e9-aa53-7723cf9dc0b6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://www.anapioficeandfire.com/api/books/1"
+					},
+					"response": []
+				}
+			],
+			"id": "086291a3-829b-45f2-bb46-85428d08493f"
+		},
+		{
+			"name": "Characters",
+			"item": [],
+			"id": "23060595-96cf-4eee-a00d-4fb03c232273"
+		},
+		{
+			"name": "Houses",
+			"item": [],
+			"id": "82a91c81-1dc9-4300-ab4d-daa7af8c7164"
+		}
+	]
+}
