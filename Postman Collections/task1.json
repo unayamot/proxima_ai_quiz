@@ -259,6 +259,18 @@
 						"url": "https://www.anapioficeandfire.com/api/books/3"
 					},
 					"response": []
+				},
+				{
+					"name": "New Request",
+					"id": "10e2f6bc-867b-467a-b939-fd5ed5fa4c49",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			],
 			"id": "086291a3-829b-45f2-bb46-85428d08493f"
