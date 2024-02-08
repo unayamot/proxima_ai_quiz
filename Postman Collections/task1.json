@@ -286,9 +286,15 @@
 						"url": "https://www.anapioficeandfire.com/api/books/99999"
 					},
 					"response": []
-				},
+				}
+			],
+			"id": "086291a3-829b-45f2-bb46-85428d08493f"
+		},
+		{
+			"name": "Characters",
+			"item": [
 				{
-					"name": "New Request",
+					"name": "Pagination",
 					"id": "5b7379a3-28af-41c9-93d0-542080e91aec",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -300,11 +306,6 @@
 					"response": []
 				}
 			],
-			"id": "086291a3-829b-45f2-bb46-85428d08493f"
-		},
-		{
-			"name": "Characters",
-			"item": [],
 			"id": "23060595-96cf-4eee-a00d-4fb03c232273"
 		},
 		{
