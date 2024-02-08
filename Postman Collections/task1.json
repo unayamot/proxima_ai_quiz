@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "55c59c9b-6975-473d-96b7-801479f627cb",
-		"name": "Proxima AI",
+		"name": "Proxima AI Quiz",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -293,6 +293,18 @@
 		{
 			"name": "Characters",
 			"item": [
+				{
+					"name": "New Request",
+					"id": "d1f37fb8-f2d9-47f8-a593-1cefcfae5a8f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
 				{
 					"name": "Pagination - Greater than 50 per page",
 					"event": [
