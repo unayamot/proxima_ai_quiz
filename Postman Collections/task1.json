@@ -288,7 +288,8 @@
 					"response": []
 				}
 			],
-			"id": "086291a3-829b-45f2-bb46-85428d08493f"
+			"id": "086291a3-829b-45f2-bb46-85428d08493f",
+			"description": "Tests for: [https://www.anapioficeandfire.com/api/books](https://www.anapioficeandfire.com/api/books)"
 		},
 		{
 			"name": "Characters",
@@ -311,6 +312,15 @@
 									"        \"The Bastard of Winterfell\",\r",
 									"        \"The Black Bastard of the Wall\",\r",
 									"        \"Lord Crow\"\r",
+									"    ];\r",
+									"\r",
+									"var tvSeasonsAppearedIn = [\r",
+									"        \"Season 1\",\r",
+									"        \"Season 2\",\r",
+									"        \"Season 3\",\r",
+									"        \"Season 4\",\r",
+									"        \"Season 5\",\r",
+									"        \"Season 6\"\r",
 									"    ];\r",
 									"\r",
 									"pm.test(\"Verify that status is 200\", function () {\r",
@@ -371,6 +381,28 @@
 									"    pm.expect(responseBody.allegiances).to.be.a('array');\r",
 									"    pm.expect(responseBody.allegiances.length).to.eq(1);\r",
 									"    pm.expect(responseBody.allegiances[0]).to.contain(\"/362\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the character's book appearance to have correct values and type\", function () {\r",
+									"    pm.expect(responseBody.books).to.be.a('array');\r",
+									"    pm.expect(responseBody.books.length).to.eq(1);\r",
+									"    pm.expect(responseBody.books[0]).to.contain(\"/5\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the character's povBook appearance to have correct values and type\", function () {\r",
+									"    pm.expect(responseBody.povBooks).to.be.a('array');\r",
+									"    pm.expect(responseBody.povBooks.length).to.eq(4);\r",
+									"    pm.expect(responseBody.povBooks[0]).to.contain(\"/1\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the character's tv appearance to have correct values and type\", function () {\r",
+									"    pm.expect(responseBody.tvSeries).to.be.a('array');\r",
+									"    pm.expect(responseBody.tvSeries).to.deep.eq(tvSeasonsAppearedIn);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the character's tv played by to have correct values and type\", function () {\r",
+									"    pm.expect(responseBody.playedBy).to.be.a('array');\r",
+									"    pm.expect(responseBody.playedBy[0]).to.eq(\"Kit Harington\");\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -503,14 +535,56 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Non-existent character",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9eb1e5e0-8fb4-4014-839c-42dfe17fc64c",
+								"exec": [
+									"pm.test(\"Verify that status is 404 - not found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "3e91e82b-b3a2-4240-a6e7-56f158b92d98",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://www.anapioficeandfire.com/api/books/99999"
+					},
+					"response": []
 				}
 			],
-			"id": "23060595-96cf-4eee-a00d-4fb03c232273"
+			"id": "23060595-96cf-4eee-a00d-4fb03c232273",
+			"description": "Tests for [https://www.anapioficeandfire.com/api/characters](https://www.anapioficeandfire.com/api/books)"
 		},
 		{
 			"name": "Houses",
-			"item": [],
-			"id": "82a91c81-1dc9-4300-ab4d-daa7af8c7164"
+			"item": [
+				{
+					"name": "New Request",
+					"id": "d5526321-dd79-47ab-8b01-ae33d6531a2f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
+			"id": "82a91c81-1dc9-4300-ab4d-daa7af8c7164",
+			"description": "Tests for [https://www.anapioficeandfire.com/api/houses](https://www.anapioficeandfire.com/api/books)"
 		}
 	]
 }
