@@ -286,6 +286,18 @@
 						"url": "https://www.anapioficeandfire.com/api/books/99999"
 					},
 					"response": []
+				},
+				{
+					"name": "Pagination Copy",
+					"id": "72c4d3e5-6fbf-45cb-8695-7a5f39aca660",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			],
 			"id": "086291a3-829b-45f2-bb46-85428d08493f"
@@ -301,7 +313,30 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "https://www.anapioficeandfire.com/api/characters?page=1&pageSize=10",
+							"protocol": "https",
+							"host": [
+								"www",
+								"anapioficeandfire",
+								"com"
+							],
+							"path": [
+								"api",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								}
+							]
+						}
 					},
 					"response": []
 				}
