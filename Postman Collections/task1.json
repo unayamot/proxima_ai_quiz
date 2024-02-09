@@ -14,7 +14,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0cfd95df-304d-406f-b0d1-63e1cb6ea1d3",
+								"id": "2572aaf3-6a90-42c0-8466-d90f9ee4cb8c",
 								"exec": [
 									"var responseBody = pm.response.json();\r",
 									"\r",
@@ -27,14 +27,19 @@
 									"});\r",
 									"\r",
 									"pm.test(\"Verify that the book name has correct value and type\", function () {\r",
-									"    pm.expect(responseBody.name).to.be.a.string;\r",
+									"    pm.expect(responseBody.name).to.be.a('string');\r",
 									"    pm.expect(responseBody.name).to.eq(\"A Game of Thrones\");\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Verify that the ISBN number has correct format, value and type\", function () {\r",
 									"    pm.expect(responseBody.isbn).to.match(/\\d{3}-\\d{10}/);\r",
-									"    pm.expect(responseBody.isbn).to.be.a.string;\r",
+									"    pm.expect(responseBody.isbn).to.be.a('string');\r",
 									"    pm.expect(responseBody.isbn).to.eq(\"978-0553103540\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the author name has correct type and value\", function () {\r",
+									"    pm.expect(responseBody.authors[0]).to.be.a('string');\r",
+									"    pm.expect(responseBody.authors[0]).to.eq(\"George R. R. Martin\");\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Verify that the number of pages has the correct type and value\", function() {\r",
@@ -70,11 +75,6 @@
 									"pm.test(\"Verify that the povCharacters has the correct count and contains character 148\", function () {\r",
 									"     pm.expect(responseBody.povCharacters.length).to.eq(9);\r",
 									"     pm.expect(responseBody.povCharacters[0]).to.eq(\"https://www.anapioficeandfire.com/api/characters/148\");\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Verify that the author name has correct type and value\", function () {\r",
-									"    pm.expect(responseBody.authors[0]).to.be.a('string');\r",
-									"    pm.expect(responseBody.authors[0]).to.eq(\"George R. R. Martin\");\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -88,7 +88,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "https://www.anapioficeandfire.com/api/books/1"
+						"url": "{{baseurl}}/books/1"
 					},
 					"response": []
 				},
@@ -172,7 +172,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "https://www.anapioficeandfire.com/api/books/2"
+						"url": "{{baseurl}}/books/2"
 					},
 					"response": []
 				},
@@ -256,7 +256,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "https://www.anapioficeandfire.com/api/books/3"
+						"url": "{{baseurl}}/books/3"
 					},
 					"response": []
 				},
@@ -283,7 +283,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "https://www.anapioficeandfire.com/api/books/99999"
+						"url": "{{baseurl}}/books/99999"
 					},
 					"response": []
 				}
@@ -300,7 +300,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "18e30b18-1751-479c-8b37-aad89c68e737",
+								"id": "0c75c1db-3f46-43b3-804d-723a4a7e2c41",
 								"exec": [
 									"var responseBody = pm.response.json();\r",
 									"var aliases = [\r",
@@ -416,7 +416,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "https://www.anapioficeandfire.com/api/characters/583"
+						"url": "{{baseurl}}/characters/583"
 					},
 					"response": []
 				},
@@ -453,15 +453,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://www.anapioficeandfire.com/api/characters?page=2&pageSize=51",
-							"protocol": "https",
+							"raw": "{{baseurl}}/characters?page=2&pageSize=51",
 							"host": [
-								"www",
-								"anapioficeandfire",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
-								"api",
 								"characters"
 							],
 							"query": [
@@ -511,15 +507,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://www.anapioficeandfire.com/api/characters?page=2&pageSize=49",
-							"protocol": "https",
+							"raw": "{{baseurl}}/characters?page=2&pageSize=49",
 							"host": [
-								"www",
-								"anapioficeandfire",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
-								"api",
 								"characters"
 							],
 							"query": [
@@ -559,7 +551,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "https://www.anapioficeandfire.com/api/books/99999"
+						"url": "{{baseurl}}/characters/99999"
 					},
 					"response": []
 				}
@@ -680,7 +672,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "https://www.anapioficeandfire.com/api/houses/362"
+						"url": "{{baseurl}}/houses/362"
 					},
 					"response": []
 				},
@@ -707,7 +699,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "https://www.anapioficeandfire.com/api/books/99999"
+						"url": "{{baseurl}}/houses/99999"
 					},
 					"response": []
 				}
