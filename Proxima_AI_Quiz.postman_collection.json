@@ -1,0 +1,772 @@
+{
+	"info": {
+		"_postman_id": "55c59c9b-6975-473d-96b7-801479f627cb",
+		"name": "Proxima AI Quiz",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29134937",
+		"_collection_link": "https://red-station-612187.postman.co/workspace/red-station-612187-Workspace~4f078f89-57f3-4331-846b-e1f5bdfe844b/collection/29134937-55c59c9b-6975-473d-96b7-801479f627cb?action=share&source=collection_link&creator=29134937"
+	},
+	"item": [
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "Book 1 - A Game of Thrones",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Verify that status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the URL contains the correct book number\", function () {\r",
+									"    pm.expect(responseBody.url).to.contain(\"/books/1\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the book name has correct value and type\", function () {\r",
+									"    pm.expect(responseBody.name).to.be.a.string;\r",
+									"    pm.expect(responseBody.name).to.eq(\"A Game of Thrones\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the ISBN number has correct format, value and type\", function () {\r",
+									"    pm.expect(responseBody.isbn).to.match(/\\d{3}-\\d{10}/);\r",
+									"    pm.expect(responseBody.isbn).to.be.a.string;\r",
+									"    pm.expect(responseBody.isbn).to.eq(\"978-0553103540\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the number of pages has the correct type and value\", function() {\r",
+									"    pm.expect(responseBody.numberOfPages).to.be.a('number');\r",
+									"    pm.expect(responseBody.numberOfPages).to.eq(694);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the publisher has the correct type and value\", function () {\r",
+									"     pm.expect(responseBody.publisher).to.be.a('string');\r",
+									"     pm.expect(responseBody.publisher).to.eq(\"Bantam Books\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the country has the correct type and value\", function () {\r",
+									"     pm.expect(responseBody.country).to.be.a('string');\r",
+									"     pm.expect(responseBody.country).to.eq(\"United States\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the media type has the correct type and value\", function () {\r",
+									"     pm.expect(responseBody.mediaType).to.be.a('string');\r",
+									"     pm.expect(responseBody.mediaType).to.eq(\"Hardcover\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the release has the correct type and value\", function () {\r",
+									"     pm.expect(responseBody.released).to.be.a('string');\r",
+									"     pm.expect(responseBody.released).to.eq(\"1996-08-01T00:00:00\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the characters has the correct count and contains character 2\", function () {\r",
+									"     pm.expect(responseBody.characters.length).to.eq(434);\r",
+									"     pm.expect(responseBody.characters[0]).to.eq(\"https://www.anapioficeandfire.com/api/characters/2\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the povCharacters has the correct count and contains character 148\", function () {\r",
+									"     pm.expect(responseBody.povCharacters.length).to.eq(9);\r",
+									"     pm.expect(responseBody.povCharacters[0]).to.eq(\"https://www.anapioficeandfire.com/api/characters/148\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the author name has correct type and value\", function () {\r",
+									"    pm.expect(responseBody.authors[0]).to.be.a('string');\r",
+									"    pm.expect(responseBody.authors[0]).to.eq(\"George R. R. Martin\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.anapioficeandfire.com/api/books/1",
+							"protocol": "https",
+							"host": [
+								"www",
+								"anapioficeandfire",
+								"com"
+							],
+							"path": [
+								"api",
+								"books",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Book 2 - A Clash of Kings",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Verify that status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the URL contains the correct book number\", function () {\r",
+									"    pm.expect(responseBody.url).to.contain(\"/books/2\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the book name has correct value and type\", function () {\r",
+									"    pm.expect(responseBody.name).to.be.a('string');\r",
+									"    pm.expect(responseBody.name).to.eq(\"A Clash of Kings\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the ISBN number has correct format, value and type\", function () {\r",
+									"    pm.expect(responseBody.isbn).to.match(/\\d{3}-\\d{10}/);\r",
+									"    pm.expect(responseBody.isbn).to.be.a('string');\r",
+									"    pm.expect(responseBody.isbn).to.eq(\"978-0553108033\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the author name has correct type and value\", function () {\r",
+									"    pm.expect(responseBody.authors[0]).to.be.a('string');\r",
+									"    pm.expect(responseBody.authors[0]).to.eq(\"George R. R. Martin\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the number of pages has the correct type and value\", function() {\r",
+									"    pm.expect(responseBody.numberOfPages).to.be.a('number');\r",
+									"    pm.expect(responseBody.numberOfPages).to.eq(768);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the publisher has the correct type and value\", function () {\r",
+									"     pm.expect(responseBody.publisher).to.be.a('string');\r",
+									"     pm.expect(responseBody.publisher).to.eq(\"Bantam Books\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the country has the correct type and value\", function () {\r",
+									"     pm.expect(responseBody.country).to.be.a('string');\r",
+									"     pm.expect(responseBody.country).to.eq(\"United States\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the media type has the correct type and value\", function () {\r",
+									"     pm.expect(responseBody.mediaType).to.be.a('string');\r",
+									"     pm.expect(responseBody.mediaType).to.eq(\"Hardback\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the release has the correct type and value\", function () {\r",
+									"     pm.expect(responseBody.released).to.be.a('string');\r",
+									"     pm.expect(responseBody.released).to.eq(\"1999-02-02T00:00:00\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the characters has the correct count and contains character 2\", function () {\r",
+									"     pm.expect(responseBody.characters.length).to.eq(778);\r",
+									"     pm.expect(responseBody.characters[0]).to.eq(\"https://www.anapioficeandfire.com/api/characters/2\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the povCharacters has the correct count and contains character 148\", function () {\r",
+									"     pm.expect(responseBody.povCharacters.length).to.eq(10);\r",
+									"     pm.expect(responseBody.povCharacters[0]).to.eq(\"https://www.anapioficeandfire.com/api/characters/148\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.anapioficeandfire.com/api/books/2",
+							"protocol": "https",
+							"host": [
+								"www",
+								"anapioficeandfire",
+								"com"
+							],
+							"path": [
+								"api",
+								"books",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Book 3 - A Storm of Swords",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Verify that status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the URL contains the correct book number\", function () {\r",
+									"    pm.expect(responseBody.url).to.contain(\"/books/3\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the book name has correct value and type\", function () {\r",
+									"    pm.expect(responseBody.name).to.be.a('string');\r",
+									"    pm.expect(responseBody.name).to.eq(\"A Storm of Swords\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the ISBN number has correct format, value and type\", function () {\r",
+									"    pm.expect(responseBody.isbn).to.match(/\\d{3}-\\d{10}/);\r",
+									"    pm.expect(responseBody.isbn).to.be.a('string');\r",
+									"    pm.expect(responseBody.isbn).to.eq(\"978-0553106633\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the author name has correct type and value\", function () {\r",
+									"    pm.expect(responseBody.authors[0]).to.be.a('string');\r",
+									"    pm.expect(responseBody.authors[0]).to.eq(\"George R. R. Martin\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the number of pages has the correct type and value\", function() {\r",
+									"    pm.expect(responseBody.numberOfPages).to.be.a('number');\r",
+									"    pm.expect(responseBody.numberOfPages).to.eq(992);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the publisher has the correct type and value\", function () {\r",
+									"     pm.expect(responseBody.publisher).to.be.a('string');\r",
+									"     pm.expect(responseBody.publisher).to.eq(\"Bantam Books\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the country has the correct type and value\", function () {\r",
+									"     pm.expect(responseBody.country).to.be.a('string');\r",
+									"     pm.expect(responseBody.country).to.eq(\"United States\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the media type has the correct type and value\", function () {\r",
+									"     pm.expect(responseBody.mediaType).to.be.a('string');\r",
+									"     pm.expect(responseBody.mediaType).to.eq(\"Hardcover\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the release has the correct type and value\", function () {\r",
+									"     pm.expect(responseBody.released).to.be.a('string');\r",
+									"     pm.expect(responseBody.released).to.eq(\"2000-10-31T00:00:00\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the characters has the correct count and contains character 2\", function () {\r",
+									"     pm.expect(responseBody.characters.length).to.eq(1021);\r",
+									"     pm.expect(responseBody.characters[0]).to.eq(\"https://www.anapioficeandfire.com/api/characters/2\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the povCharacters has the correct count and contains character 148\", function () {\r",
+									"     pm.expect(responseBody.povCharacters.length).to.eq(12);\r",
+									"     pm.expect(responseBody.povCharacters[0]).to.eq(\"https://www.anapioficeandfire.com/api/characters/148\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.anapioficeandfire.com/api/books/3",
+							"protocol": "https",
+							"host": [
+								"www",
+								"anapioficeandfire",
+								"com"
+							],
+							"path": [
+								"api",
+								"books",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Non-existent book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify that status is 404 - not found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.anapioficeandfire.com/api/books/99999",
+							"protocol": "https",
+							"host": [
+								"www",
+								"anapioficeandfire",
+								"com"
+							],
+							"path": [
+								"api",
+								"books",
+								"99999"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tests for: [https://www.anapioficeandfire.com/api/books](https://www.anapioficeandfire.com/api/books)"
+		},
+		{
+			"name": "Characters",
+			"item": [
+				{
+					"name": "Character 583 - Jon Snow",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = pm.response.json();\r",
+									"var aliases = [\r",
+									"        \"Lord Snow\",\r",
+									"        \"Ned Stark's Bastard\",\r",
+									"        \"The Snow of Winterfell\",\r",
+									"        \"The Crow-Come-Over\",\r",
+									"        \"The 998th Lord Commander of the Night's Watch\",\r",
+									"        \"The Bastard of Winterfell\",\r",
+									"        \"The Black Bastard of the Wall\",\r",
+									"        \"Lord Crow\"\r",
+									"    ];\r",
+									"\r",
+									"var tvSeasonsAppearedIn = [\r",
+									"        \"Season 1\",\r",
+									"        \"Season 2\",\r",
+									"        \"Season 3\",\r",
+									"        \"Season 4\",\r",
+									"        \"Season 5\",\r",
+									"        \"Season 6\"\r",
+									"    ];\r",
+									"\r",
+									"pm.test(\"Verify that status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the URL contains the correct character number\", function () {\r",
+									"    pm.expect(responseBody.url).to.contain(\"/characters/583\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the character name has correct value and type\", function () {\r",
+									"    pm.expect(responseBody.name).to.be.a('string');\r",
+									"    pm.expect(responseBody.name).to.eq(\"Jon Snow\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the character gender has correct value and type\", function () {\r",
+									"    pm.expect(responseBody.gender).to.be.a('string');\r",
+									"    pm.expect(responseBody.gender).to.eq(\"Male\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the character date of birth has correct value and type\", function () {\r",
+									"    pm.expect(responseBody.born).to.be.a('string');\r",
+									"    pm.expect(responseBody.born).to.eq(\"In 283 AC\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the character date of death has correct value and type\", function () {\r",
+									"    pm.expect(responseBody.died).to.be.a('string');\r",
+									"    pm.expect(responseBody.died).to.eq(\"\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the character titles has correct number of values and type\", function () {\r",
+									"    pm.expect(responseBody.titles).to.be.a('array');\r",
+									"    pm.expect(responseBody.titles.length).to.eq(1);\r",
+									"    pm.expect(responseBody.titles[0]).to.eq(\"Lord Commander of the Night's Watch\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the character's aliases to have correct values and type\", function () {\r",
+									"    pm.expect(responseBody.aliases).to.be.a('array');\r",
+									"    pm.expect(responseBody.aliases).to.deep.eq(aliases);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the character's father to have correct value and type\", function () {\r",
+									"    pm.expect(responseBody.father).to.be.a('string');\r",
+									"    pm.expect(responseBody.father).to.eq(\"\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the character's mother to have correct value and type\", function () {\r",
+									"    pm.expect(responseBody.father).to.be.a('string');\r",
+									"    pm.expect(responseBody.mother).to.eq(\"\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the character's spouse to have correct value and type\", function () {\r",
+									"    pm.expect(responseBody.father).to.be.a('string');\r",
+									"    pm.expect(responseBody.spouse).to.eq(\"\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the character's allegiance to have correct values and type\", function () {\r",
+									"    pm.expect(responseBody.allegiances).to.be.a('array');\r",
+									"    pm.expect(responseBody.allegiances.length).to.eq(1);\r",
+									"    pm.expect(responseBody.allegiances[0]).to.contain(\"/362\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the character's book appearance to have correct values and type\", function () {\r",
+									"    pm.expect(responseBody.books).to.be.a('array');\r",
+									"    pm.expect(responseBody.books.length).to.eq(1);\r",
+									"    pm.expect(responseBody.books[0]).to.contain(\"/5\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the character's povBook appearance to have correct values and type\", function () {\r",
+									"    pm.expect(responseBody.povBooks).to.be.a('array');\r",
+									"    pm.expect(responseBody.povBooks.length).to.eq(4);\r",
+									"    pm.expect(responseBody.povBooks[0]).to.contain(\"/1\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the character's tv appearance to have correct values and type\", function () {\r",
+									"    pm.expect(responseBody.tvSeries).to.be.a('array');\r",
+									"    pm.expect(responseBody.tvSeries).to.deep.eq(tvSeasonsAppearedIn);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the character's tv played by to have correct values and type\", function () {\r",
+									"    pm.expect(responseBody.playedBy).to.be.a('array');\r",
+									"    pm.expect(responseBody.playedBy[0]).to.eq(\"Kit Harington\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.anapioficeandfire.com/api/characters/583",
+							"protocol": "https",
+							"host": [
+								"www",
+								"anapioficeandfire",
+								"com"
+							],
+							"path": [
+								"api",
+								"characters",
+								"583"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination - Greater than 50 per page",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Check if response body is an array of objects\", function () {\r",
+									"    pm.expect(responseBody).to.be.an('array').that.is.not.empty;\r",
+									"    responseBody.forEach((character) => {\r",
+									"        pm.expect(character).to.be.an('object');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check if response body has correct number of characters\", function () {\r",
+									"    pm.expect(responseBody.length).to.eq(51);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.anapioficeandfire.com/api/characters?page=2&pageSize=51",
+							"protocol": "https",
+							"host": [
+								"www",
+								"anapioficeandfire",
+								"com"
+							],
+							"path": [
+								"api",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "pageSize",
+									"value": "51"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination - Less than 50 per page",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Check if response body is an array of objects\", function () {\r",
+									"    pm.expect(responseBody).to.be.an('array').that.is.not.empty;\r",
+									"    responseBody.forEach((character) => {\r",
+									"        pm.expect(character).to.be.an('object');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check if response body has correct number of characters\", function () {\r",
+									"    pm.expect(responseBody.length).to.eq(49);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.anapioficeandfire.com/api/characters?page=2&pageSize=49",
+							"protocol": "https",
+							"host": [
+								"www",
+								"anapioficeandfire",
+								"com"
+							],
+							"path": [
+								"api",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "pageSize",
+									"value": "49"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Non-existent character",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify that status is 404 - not found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.anapioficeandfire.com/api/books/99999",
+							"protocol": "https",
+							"host": [
+								"www",
+								"anapioficeandfire",
+								"com"
+							],
+							"path": [
+								"api",
+								"books",
+								"99999"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tests for [https://www.anapioficeandfire.com/api/characters](https://www.anapioficeandfire.com/api/books)"
+		},
+		{
+			"name": "Houses",
+			"item": [
+				{
+					"name": "House 362 - House Stark of Winterfell",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseBody = pm.response.json();\r",
+									"var titles = [\r",
+									"        \"King in the North\",\r",
+									"        \"Lord of Winterfell\",\r",
+									"        \"Warden of the North\",\r",
+									"        \"King of the Trident\"\r",
+									"    ];\r",
+									"\r",
+									"pm.test(\"Verify that status is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the URL contains the correct house number\", function () {\r",
+									"    pm.expect(responseBody.url).to.contain(\"/houses/362\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the house name has the correct type and value\", function () {\r",
+									"    pm.expect(responseBody.name).to.be.a('string');\r",
+									"    pm.expect(responseBody.name).to.eq(\"House Stark of Winterfell\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the house name has the correct type and value\", function () {\r",
+									"    pm.expect(responseBody.name).to.be.a('string');\r",
+									"    pm.expect(responseBody.name).to.eq(\"House Stark of Winterfell\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the house region has the correct type and value\", function () {\r",
+									"    pm.expect(responseBody.region).to.be.a('string');\r",
+									"    pm.expect(responseBody.region).to.eq(\"The North\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the house coat of arms has the correct type and value\", function () {\r",
+									"    pm.expect(responseBody.coatOfArms).to.be.a('string');\r",
+									"    pm.expect(responseBody.coatOfArms).to.eq(\"A running grey direwolf, on an ice-white field\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the house words has the correct type and value\", function () {\r",
+									"    pm.expect(responseBody.words).to.be.a('string');\r",
+									"    pm.expect(responseBody.words).to.eq(\"Winter is Coming\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the house titles has the correct type and values\", function () {\r",
+									"    pm.expect(responseBody.titles).to.be.a('array');\r",
+									"    pm.expect(responseBody.titles).to.deep.eq(titles);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the house seats has the correct type and value\", function () {\r",
+									"    pm.expect(responseBody.seats).to.be.a('array');\r",
+									"    pm.expect(responseBody.seats[0]).to.eq(\"Scattered (formerly Winterfell)\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the house current lord has the correct type and value\", function () {\r",
+									"    pm.expect(responseBody.currentLord).to.be.a('string');\r",
+									"    pm.expect(responseBody.currentLord).to.eq(\"\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the house overlord has the correct type and value\", function () {\r",
+									"    pm.expect(responseBody.overlord).to.be.a('string');\r",
+									"    pm.expect(responseBody.overlord).to.contain(\"/houses/16\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the house founded in has the correct type and value\", function () {\r",
+									"    pm.expect(responseBody.founded).to.be.a('string');\r",
+									"    pm.expect(responseBody.founded).to.eq(\"Age of Heroes\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the house founder has the correct type and value\", function () {\r",
+									"    pm.expect(responseBody.founder).to.be.a('string');\r",
+									"    pm.expect(responseBody.founder).to.contain(\"/characters/209\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the house diedOut has the correct type and value\", function () {\r",
+									"    pm.expect(responseBody.diedOut).to.be.a('string');\r",
+									"    pm.expect(responseBody.diedOut).to.eq(\"\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the house ancestral weapon has the correct type and value\", function () {\r",
+									"    pm.expect(responseBody.ancestralWeapons).to.be.a('array');\r",
+									"    pm.expect(responseBody.ancestralWeapons[0]).to.eq(\"Ice\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the house cadet branches has the correct type and value\", function () {\r",
+									"    pm.expect(responseBody.cadetBranches).to.be.a('array');\r",
+									"    pm.expect(responseBody.cadetBranches.length).to.eq(2);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the house sworn members has the correct type and value\", function () {\r",
+									"    pm.expect(responseBody.swornMembers).to.be.a('array');\r",
+									"    pm.expect(responseBody.swornMembers.length).to.eq(88);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.anapioficeandfire.com/api/houses/362",
+							"protocol": "https",
+							"host": [
+								"www",
+								"anapioficeandfire",
+								"com"
+							],
+							"path": [
+								"api",
+								"houses",
+								"362"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Non-existent house",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify that status is 404 - not found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.anapioficeandfire.com/api/books/99999",
+							"protocol": "https",
+							"host": [
+								"www",
+								"anapioficeandfire",
+								"com"
+							],
+							"path": [
+								"api",
+								"books",
+								"99999"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tests for [https://www.anapioficeandfire.com/api/houses](https://www.anapioficeandfire.com/api/books)"
+		}
+	]
+}
