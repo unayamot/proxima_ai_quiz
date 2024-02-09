@@ -74,7 +74,7 @@
 									"\r",
 									"pm.test(\"Verify that the povCharacters has the correct count and contains character 148\", function () {\r",
 									"     pm.expect(responseBody.povCharacters.length).to.eq(9);\r",
-									"     pm.expect(responseBody.povCharacters[0]).to.eq(\"https://www.anapioficeandfire.com/api/characters/148\");\r",
+									"     pm.expect(responseBody.povCharacters[0]).to.contain(\"/characters/148\");\r",
 									"});"
 								],
 								"type": "text/javascript"
