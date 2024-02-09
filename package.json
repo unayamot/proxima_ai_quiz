@@ -1,0 +1,17 @@
+{
+  "name": "proxima_ai_quiz",
+  "version": "1.0.0",
+  "description": "Task 1:\r 1. All the tests in the Proxima_AI_Quiz.postman_collection.json file.\r 2. There is a circleci config yml in the .circleci folder that runs the tests on a new commit/merge.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "report": "npx newman run ./Proxima_AI_Quiz.postman_collection.json -e ./proxima_ai_quiz_env.postman_environment.json -r htmlextra"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "newman": "^6.1.1",
+    "newman-reporter-htmlextra": "^1.23.0"
+  }
+}
