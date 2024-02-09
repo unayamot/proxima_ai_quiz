@@ -28,14 +28,19 @@
 									"});\r",
 									"\r",
 									"pm.test(\"Verify that the book name has correct value and type\", function () {\r",
-									"    pm.expect(responseBody.name).to.be.a.string;\r",
+									"    pm.expect(responseBody.name).to.be.a('string');\r",
 									"    pm.expect(responseBody.name).to.eq(\"A Game of Thrones\");\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Verify that the ISBN number has correct format, value and type\", function () {\r",
 									"    pm.expect(responseBody.isbn).to.match(/\\d{3}-\\d{10}/);\r",
-									"    pm.expect(responseBody.isbn).to.be.a.string;\r",
+									"    pm.expect(responseBody.isbn).to.be.a('string');\r",
 									"    pm.expect(responseBody.isbn).to.eq(\"978-0553103540\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the author name has correct type and value\", function () {\r",
+									"    pm.expect(responseBody.authors[0]).to.be.a('string');\r",
+									"    pm.expect(responseBody.authors[0]).to.eq(\"George R. R. Martin\");\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Verify that the number of pages has the correct type and value\", function() {\r",
@@ -65,17 +70,12 @@
 									"\r",
 									"pm.test(\"Verify that the characters has the correct count and contains character 2\", function () {\r",
 									"     pm.expect(responseBody.characters.length).to.eq(434);\r",
-									"     pm.expect(responseBody.characters[0]).to.eq(\"https://www.anapioficeandfire.com/api/characters/2\");\r",
+									"     pm.expect(responseBody.characters[0]).to.contain(\"/characters/2\");\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Verify that the povCharacters has the correct count and contains character 148\", function () {\r",
 									"     pm.expect(responseBody.povCharacters.length).to.eq(9);\r",
-									"     pm.expect(responseBody.povCharacters[0]).to.eq(\"https://www.anapioficeandfire.com/api/characters/148\");\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Verify that the author name has correct type and value\", function () {\r",
-									"    pm.expect(responseBody.authors[0]).to.be.a('string');\r",
-									"    pm.expect(responseBody.authors[0]).to.eq(\"George R. R. Martin\");\r",
+									"     pm.expect(responseBody.povCharacters[0]).to.contain(\"/characters/148\");\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -86,15 +86,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://www.anapioficeandfire.com/api/books/1",
-							"protocol": "https",
+							"raw": "{{baseurl}}/books/1",
 							"host": [
-								"www",
-								"anapioficeandfire",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
-								"api",
 								"books",
 								"1"
 							]
@@ -178,15 +174,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://www.anapioficeandfire.com/api/books/2",
-							"protocol": "https",
+							"raw": "{{baseurl}}/books/2",
 							"host": [
-								"www",
-								"anapioficeandfire",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
-								"api",
 								"books",
 								"2"
 							]
@@ -270,15 +262,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://www.anapioficeandfire.com/api/books/3",
-							"protocol": "https",
+							"raw": "{{baseurl}}/books/3",
 							"host": [
-								"www",
-								"anapioficeandfire",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
-								"api",
 								"books",
 								"3"
 							]
@@ -305,15 +293,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://www.anapioficeandfire.com/api/books/99999",
-							"protocol": "https",
+							"raw": "{{baseurl}}/books/99999",
 							"host": [
-								"www",
-								"anapioficeandfire",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
-								"api",
 								"books",
 								"99999"
 							]
@@ -445,15 +429,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://www.anapioficeandfire.com/api/characters/583",
-							"protocol": "https",
+							"raw": "{{baseurl}}/characters/583",
 							"host": [
-								"www",
-								"anapioficeandfire",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
-								"api",
 								"characters",
 								"583"
 							]
@@ -489,15 +469,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://www.anapioficeandfire.com/api/characters?page=2&pageSize=51",
-							"protocol": "https",
+							"raw": "{{baseurl}}/characters?page=2&pageSize=51",
 							"host": [
-								"www",
-								"anapioficeandfire",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
-								"api",
 								"characters"
 							],
 							"query": [
@@ -542,15 +518,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://www.anapioficeandfire.com/api/characters?page=2&pageSize=49",
-							"protocol": "https",
+							"raw": "{{baseurl}}/characters?page=2&pageSize=49",
 							"host": [
-								"www",
-								"anapioficeandfire",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
-								"api",
 								"characters"
 							],
 							"query": [
@@ -586,16 +558,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://www.anapioficeandfire.com/api/books/99999",
-							"protocol": "https",
+							"raw": "{{baseurl}}/characters/99999",
 							"host": [
-								"www",
-								"anapioficeandfire",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
-								"api",
-								"books",
+								"characters",
 								"99999"
 							]
 						}
@@ -714,15 +682,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://www.anapioficeandfire.com/api/houses/362",
-							"protocol": "https",
+							"raw": "{{baseurl}}/houses/362",
 							"host": [
-								"www",
-								"anapioficeandfire",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
-								"api",
 								"houses",
 								"362"
 							]
@@ -749,16 +713,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://www.anapioficeandfire.com/api/books/99999",
-							"protocol": "https",
+							"raw": "{{baseurl}}/houses/99999",
 							"host": [
-								"www",
-								"anapioficeandfire",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
-								"api",
-								"books",
+								"houses",
 								"99999"
 							]
 						}
@@ -767,6 +727,33 @@
 				}
 			],
 			"description": "Tests for [https://www.anapioficeandfire.com/api/houses](https://www.anapioficeandfire.com/api/books)"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseurl",
+			"value": "https://www.anapioficeandfire.com/api",
+			"type": "string"
 		}
 	]
 }
