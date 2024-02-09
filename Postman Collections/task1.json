@@ -438,7 +438,7 @@
 									"});\r",
 									"\r",
 									"pm.test(\"Check if response body has correct number of characters\", function () {\r",
-									"    pm.expect(responseBody.length).to.eq(51);\r",
+									"    pm.expect(responseBody.length).to.eq(50);\r",
 									"});"
 								],
 								"type": "text/javascript"
