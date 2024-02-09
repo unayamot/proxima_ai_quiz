@@ -715,5 +715,34 @@
 			"id": "82a91c81-1dc9-4300-ab4d-daa7af8c7164",
 			"description": "Tests for [https://www.anapioficeandfire.com/api/houses](https://www.anapioficeandfire.com/api/books)"
 		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "2d97c06f-8e43-46e9-872d-0b90481e1a19",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "f7620db0-ae91-4596-9f47-723a93f6c60c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseurl",
+			"value": "https://www.anapioficeandfire.com/api",
+			"type": "string"
+		}
 	]
 }
