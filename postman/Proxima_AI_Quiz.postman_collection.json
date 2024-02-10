@@ -28,14 +28,19 @@
 									"});\r",
 									"\r",
 									"pm.test(\"Verify that the book name has correct value and type\", function () {\r",
-									"    pm.expect(responseBody.name).to.be.a.string;\r",
+									"    pm.expect(responseBody.name).to.be.a('string');\r",
 									"    pm.expect(responseBody.name).to.eq(\"A Game of Thrones\");\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Verify that the ISBN number has correct format, value and type\", function () {\r",
 									"    pm.expect(responseBody.isbn).to.match(/\\d{3}-\\d{10}/);\r",
-									"    pm.expect(responseBody.isbn).to.be.a.string;\r",
+									"    pm.expect(responseBody.isbn).to.be.a('string');\r",
 									"    pm.expect(responseBody.isbn).to.eq(\"978-0553103540\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify that the author name has correct type and value\", function () {\r",
+									"    pm.expect(responseBody.authors[0]).to.be.a('string');\r",
+									"    pm.expect(responseBody.authors[0]).to.eq(\"George R. R. Martin\");\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Verify that the number of pages has the correct type and value\", function() {\r",
@@ -65,17 +70,12 @@
 									"\r",
 									"pm.test(\"Verify that the characters has the correct count and contains character 2\", function () {\r",
 									"     pm.expect(responseBody.characters.length).to.eq(434);\r",
-									"     pm.expect(responseBody.characters[0]).to.eq(\"https://www.anapioficeandfire.com/api/characters/2\");\r",
+									"     pm.expect(responseBody.characters[0]).to.contain(\"/characters/2\");\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Verify that the povCharacters has the correct count and contains character 148\", function () {\r",
 									"     pm.expect(responseBody.povCharacters.length).to.eq(9);\r",
-									"     pm.expect(responseBody.povCharacters[0]).to.eq(\"https://www.anapioficeandfire.com/api/characters/148\");\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Verify that the author name has correct type and value\", function () {\r",
-									"    pm.expect(responseBody.authors[0]).to.be.a('string');\r",
-									"    pm.expect(responseBody.authors[0]).to.eq(\"George R. R. Martin\");\r",
+									"     pm.expect(responseBody.povCharacters[0]).to.contain(\"/characters/148\");\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -86,15 +86,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://www.anapioficeandfire.com/api/books/1",
-							"protocol": "https",
+							"raw": "{{baseurl}}/books/1",
 							"host": [
-								"www",
-								"anapioficeandfire",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
-								"api",
 								"books",
 								"1"
 							]
@@ -178,15 +174,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://www.anapioficeandfire.com/api/books/2",
-							"protocol": "https",
+							"raw": "{{baseurl}}/books/2",
 							"host": [
-								"www",
-								"anapioficeandfire",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
-								"api",
 								"books",
 								"2"
 							]
@@ -270,15 +262,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://www.anapioficeandfire.com/api/books/3",
-							"protocol": "https",
+							"raw": "{{baseurl}}/books/3",
 							"host": [
-								"www",
-								"anapioficeandfire",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
-								"api",
 								"books",
 								"3"
 							]
@@ -305,17 +293,110 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://www.anapioficeandfire.com/api/books/99999",
-							"protocol": "https",
+							"raw": "{{baseurl}}/books/99999",
 							"host": [
-								"www",
-								"anapioficeandfire",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
-								"api",
 								"books",
 								"99999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Book - JSON Schema Validation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const schema = {\r",
+									"    \"type\": \"object\",\r",
+									"    \"properties\": {\r",
+									"        \"url\": {\r",
+									"            \"type\": \"string\"\r",
+									"        },\r",
+									"        \"name\": {\r",
+									"            \"type\": \"string\"\r",
+									"        },\r",
+									"        \"isbn\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"pattern\": \"^\\\\d{3}-\\\\d{10}$\"\r",
+									"        },\r",
+									"        \"authors\": {\r",
+									"            \"type\": \"array\",\r",
+									"            \"items\": {\r",
+									"                \"type\": \"string\"\r",
+									"            }\r",
+									"        },\r",
+									"        \"numberOfPages\": {\r",
+									"            \"type\": \"integer\",\r",
+									"            \"minimum\": 0\r",
+									"        },\r",
+									"        \"publisher\": {\r",
+									"            \"type\": \"string\"\r",
+									"        },\r",
+									"        \"country\": {\r",
+									"            \"type\": \"string\"\r",
+									"        },\r",
+									"        \"mediaType\": {\r",
+									"            \"type\": \"string\"\r",
+									"        },\r",
+									"        \"released\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"pattern\": \"^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}$\"\r",
+									"        },\r",
+									"        \"characters\": {\r",
+									"            \"type\": \"array\",\r",
+									"            \"items\": {\r",
+									"                \"type\": \"string\",\r",
+									"                \"format\": \"uri\"\r",
+									"            }\r",
+									"        },\r",
+									"        \"povCharacters\": {\r",
+									"            \"type\": \"array\",\r",
+									"            \"items\": {\r",
+									"                \"type\": \"string\",\r",
+									"                \"format\": \"uri\"\r",
+									"            }\r",
+									"        }\r",
+									"    },\r",
+									"    \"required\": [\r",
+									"        \"url\",\r",
+									"        \"name\",\r",
+									"        \"isbn\",\r",
+									"        \"authors\",\r",
+									"        \"numberOfPages\",\r",
+									"        \"publisher\",\r",
+									"        \"country\",\r",
+									"        \"mediaType\",\r",
+									"        \"released\",\r",
+									"        \"characters\",\r",
+									"        \"povCharacters\"\r",
+									"    ]\r",
+									"};\r",
+									"\r",
+									"pm.test('Schema is valid', function() {\r",
+									"  pm.expect(pm.response.json()).to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/books/1",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"books",
+								"1"
 							]
 						}
 					},
@@ -445,15 +526,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://www.anapioficeandfire.com/api/characters/583",
-							"protocol": "https",
+							"raw": "{{baseurl}}/characters/583",
 							"host": [
-								"www",
-								"anapioficeandfire",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
-								"api",
 								"characters",
 								"583"
 							]
@@ -489,15 +566,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://www.anapioficeandfire.com/api/characters?page=2&pageSize=51",
-							"protocol": "https",
+							"raw": "{{baseurl}}/characters?page=2&pageSize=51",
 							"host": [
-								"www",
-								"anapioficeandfire",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
-								"api",
 								"characters"
 							],
 							"query": [
@@ -542,15 +615,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://www.anapioficeandfire.com/api/characters?page=2&pageSize=49",
-							"protocol": "https",
+							"raw": "{{baseurl}}/characters?page=2&pageSize=49",
 							"host": [
-								"www",
-								"anapioficeandfire",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
-								"api",
 								"characters"
 							],
 							"query": [
@@ -586,17 +655,135 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://www.anapioficeandfire.com/api/books/99999",
-							"protocol": "https",
+							"raw": "{{baseurl}}/characters/99999",
 							"host": [
-								"www",
-								"anapioficeandfire",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
-								"api",
-								"books",
+								"characters",
 								"99999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Characters - JSON Schema Validation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const schema = {\r",
+									"    \"type\": \"object\",\r",
+									"    \"properties\": {\r",
+									"        \"url\": { \r",
+									"            \"type\": \"string\"\r",
+									"            },\r",
+									"        \"name\": { \r",
+									"            \"type\": \"string\"\r",
+									"            },\r",
+									"        \"gender\": { \r",
+									"            \"type\": \"string\" \r",
+									"            },\r",
+									"        \"culture\": { \r",
+									"            \"type\": \"string\" \r",
+									"            },\r",
+									"        \"born\": { \r",
+									"            \"type\": \"string\" \r",
+									"            },\r",
+									"        \"died\": { \r",
+									"            \"type\": \"string\" \r",
+									"            },\r",
+									"        \"titles\": { \r",
+									"            \"type\": \"array\", \r",
+									"            \"items\": { \r",
+									"                \"type\": \"string\" \r",
+									"                } \r",
+									"            },\r",
+									"        \"aliases\": { \r",
+									"            \"type\": \"array\", \r",
+									"            \"items\": { \r",
+									"                \"type\": \"string\" \r",
+									"                } \r",
+									"            },\r",
+									"        \"father\": { \r",
+									"            \"type\": \"string\" \r",
+									"            },\r",
+									"        \"mother\": { \r",
+									"            \"type\": \"string\" \r",
+									"            },\r",
+									"        \"spouse\": { \r",
+									"            \"type\": \"string\" \r",
+									"            },\r",
+									"        \"allegiances\": { \r",
+									"            \"type\": \"array\", \r",
+									"            \"items\": { \r",
+									"                \"type\": \"string\" \r",
+									"                } \r",
+									"            },\r",
+									"        \"books\": { \r",
+									"            \"type\": \"array\", \r",
+									"            \"items\": { \r",
+									"                \"type\": \"string\" } \r",
+									"                },\r",
+									"        \"povBooks\": { \r",
+									"            \"type\": \"array\", \r",
+									"            \"items\": { \r",
+									"                \"type\": \"string\" \r",
+									"                } \r",
+									"            },\r",
+									"        \"tvSeries\": { \r",
+									"            \"type\": \"array\", \r",
+									"            \"items\": { \r",
+									"                \"type\": \"string\" } \r",
+									"            },\r",
+									"        \"playedBy\": { \r",
+									"            \"type\": \"array\", \r",
+									"            \"items\": { \r",
+									"                \"type\": \"string\" \r",
+									"                } \r",
+									"            }\r",
+									"    },\r",
+									"    \"required\": [\r",
+									"        \"url\", \r",
+									"        \"name\", \r",
+									"        \"gender\", \r",
+									"        \"culture\", \r",
+									"        \"born\", \r",
+									"        \"died\", \r",
+									"        \"titles\", \r",
+									"        \"aliases\", \r",
+									"        \"father\", \r",
+									"        \"mother\", \r",
+									"        \"spouse\", \r",
+									"        \"allegiances\", \r",
+									"        \"books\", \r",
+									"        \"povBooks\", \r",
+									"        \"tvSeries\", \r",
+									"        \"playedBy\"\r",
+									"        ]\r",
+									"};\r",
+									"\r",
+									"pm.test('Schema is valid', function() {\r",
+									"  pm.expect(pm.response.json()).to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/characters/583",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"characters",
+								"583"
 							]
 						}
 					},
@@ -714,15 +901,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://www.anapioficeandfire.com/api/houses/362",
-							"protocol": "https",
+							"raw": "{{baseurl}}/houses/362",
 							"host": [
-								"www",
-								"anapioficeandfire",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
-								"api",
 								"houses",
 								"362"
 							]
@@ -749,17 +932,131 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://www.anapioficeandfire.com/api/books/99999",
-							"protocol": "https",
+							"raw": "{{baseurl}}/houses/99999",
 							"host": [
-								"www",
-								"anapioficeandfire",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
-								"api",
-								"books",
+								"houses",
 								"99999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Houses - JSON Schema Validation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const schema = {\r",
+									"    \"type\": \"object\",\r",
+									"    \"properties\": {\r",
+									"        \"url\": { \r",
+									"            \"type\": \"string\" \r",
+									"            },\r",
+									"        \"name\": { \r",
+									"            \"type\": \"string\" \r",
+									"            },\r",
+									"        \"region\": { \r",
+									"            \"type\": \"string\" \r",
+									"            },\r",
+									"        \"coatOfArms\": { \r",
+									"            \"type\": \"string\" \r",
+									"            },\r",
+									"        \"words\": { \r",
+									"            \"type\": \"string\" \r",
+									"            },\r",
+									"        \"titles\": { \r",
+									"            \"type\": \"array\", \r",
+									"            \"items\": { \r",
+									"                \"type\": \"string\" \r",
+									"                } \r",
+									"            },\r",
+									"        \"seats\": { \r",
+									"            \"type\": \"array\", \r",
+									"            \"items\": { \r",
+									"                \"type\": \"string\" \r",
+									"                } \r",
+									"            },\r",
+									"        \"currentLord\": { \r",
+									"            \"type\": \"string\" \r",
+									"            },\r",
+									"        \"heir\": { \r",
+									"            \"type\": \"string\" \r",
+									"            },\r",
+									"        \"overlord\": { \r",
+									"            \"type\": \"string\" \r",
+									"            },\r",
+									"        \"founded\": { \r",
+									"            \"type\": \"string\" \r",
+									"            },\r",
+									"        \"founder\": { \r",
+									"            \"type\": \"string\" \r",
+									"            },\r",
+									"        \"diedOut\": { \r",
+									"            \"type\": \"string\" \r",
+									"            },\r",
+									"        \"ancestralWeapons\": { \r",
+									"            \"type\": \"array\", \r",
+									"            \"items\": { \r",
+									"                \"type\": \"string\" \r",
+									"                } \r",
+									"            },\r",
+									"        \"cadetBranches\": { \r",
+									"            \"type\": \"array\", \r",
+									"            \"items\": { \r",
+									"                \"type\": \"string\" \r",
+									"                } \r",
+									"            },\r",
+									"        \"swornMembers\": { \r",
+									"            \"type\": \"array\", \r",
+									"            \"items\": { \r",
+									"                \"type\": \"string\" \r",
+									"                } \r",
+									"            }\r",
+									"    },\r",
+									"    \"required\": [\r",
+									"        \"url\", \r",
+									"        \"name\", \r",
+									"        \"region\", \r",
+									"        \"coatOfArms\", \r",
+									"        \"words\", \r",
+									"        \"titles\", \r",
+									"        \"seats\", \r",
+									"        \"currentLord\", \r",
+									"        \"heir\", \r",
+									"        \"overlord\", \r",
+									"        \"founded\", \r",
+									"        \"founder\", \r",
+									"        \"diedOut\", \r",
+									"        \"ancestralWeapons\", \r",
+									"        \"cadetBranches\", \r",
+									"        \"swornMembers\"\r",
+									"        ]\r",
+									"};\r",
+									"\r",
+									"pm.test('Schema is valid', function() {\r",
+									"  pm.expect(pm.response.json()).to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/houses/362",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"houses",
+								"362"
 							]
 						}
 					},
@@ -767,6 +1064,33 @@
 				}
 			],
 			"description": "Tests for [https://www.anapioficeandfire.com/api/houses](https://www.anapioficeandfire.com/api/books)"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseurl",
+			"value": "https://www.anapioficeandfire.com/api",
+			"type": "string"
 		}
 	]
 }
