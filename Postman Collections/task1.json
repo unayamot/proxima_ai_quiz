@@ -286,6 +286,18 @@
 						"url": "{{baseurl}}/books/99999"
 					},
 					"response": []
+				},
+				{
+					"name": "Book - JSON Schema Validation",
+					"id": "ae9e41b4-c782-4722-8fbb-3f715d8d4933",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			],
 			"id": "086291a3-829b-45f2-bb46-85428d08493f",
