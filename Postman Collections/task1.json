@@ -647,6 +647,18 @@
 						"url": "{{baseurl}}/characters/99999"
 					},
 					"response": []
+				},
+				{
+					"name": "Characters - JSON Schema Validation",
+					"id": "72e44670-f2ff-4118-a214-6d04041cae7a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			],
 			"id": "23060595-96cf-4eee-a00d-4fb03c232273",
