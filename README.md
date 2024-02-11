@@ -18,16 +18,17 @@ To run the collection via newman locally and or generate a report run the follow
 
 There are a few unknowns and considerations that need to be made for this scenario. First I do not have all the context for this scenario since I have never run this test manually (which is usually what I would do for any new test before autoamting it) so some of the things that I say may be completely unviable. Here are some of the assumptions that I made:
 1. We have an APi that lets us simulate that a user has abandoned the shopping cart (an API available outside the shopify service in lower environments).
-2. We can use the API in assumption 1 to save the cart data to the database and retrieve it or another API that does this.
-3. We also have an API that is sending the triggering request to the cron job (probably the same one in 1, it's also fine if it's different).
+2. We can use the API in assumption 1 to save the cart data to the database and retrieve it or with another API that does this.
+3. We also have an API that is sending the triggering request to the cron job (probably the same one in assumption 1, it's also fine if it's different).
 4. We can create a webhook or email hook to send the SMS from twilio as an email.
 
 Manual Test:
 1. Trigger a abandoned shopping cart request.
 2. Connect to the database service and check if the cart has been saved.
 3. Write a SQL query to make sure the cron job would receive the trigger.
-4. Set the cron job to trigger in a few seconds rather than 24 hours and verify that it triggers correctly.
-5. Check the associated phone to see if the SMS has been recevied and verify the details are correct.
+4. Match the SQL data to the data from the API response.
+5. Set the cron job to trigger in a few seconds rather than 24 hours and verify that it triggers correctly.
+6. Check the associated phone to see if the SMS has been recevied and verify the details are correct.
 
 Automated Test: If we have all the means mentioned in the assumptions then we can formulate a automated test case as follows using Cypress/Playwright:
 1. Start the test when we receive the response that a shopping cart has been abandoned. In Cypress we can use cy.request() in Playwright we use request.post() or request.get() to test APIs.
